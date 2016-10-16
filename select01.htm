@@ -1,0 +1,56 @@
+<html>  
+<head>  
+<title> 下拉框左右互转</title>  
+<script>  
+//左右复选框的相关函数  
+function cut(srcSelectObj,destSelectObj){  
+ for(var i=0;i<srcSelectObj.options.length;i++){  
+  if(srcSelectObj.options[i].selected){  
+   if(destSelectObj){  
+    destSelectObj.add(new Option(srcSelectObj.options[i].text,srcSelectObj.options[i].value));  
+   }  
+   srcSelectObj.remove(i);  
+   i--;  
+  }  
+ }  
+}  
+function cutAll(srcSelectObj,destSelectObj){  
+ selectAll(srcSelectObj);  
+ cut(srcSelectObj,destSelectObj);  
+}  
+function selectAll(selectObj){  
+ for(var i=0;i<selectObj.options.length;i++){  
+  selectObj.options[i].selected=true;  
+ }  
+}  
+</script>  
+</head>  
+<body>  
+<center>  
+    <table width = 60% border = "1">  
+        <tr>  
+            <td width = 40%>   
+                <select id = "left" style="width: 300px; height = 400px" multiple="multiple">  
+                  <option value = "1" >1</option>  
+                  <option value = "2" >2</option>  
+                  <option value = "3" >3</option>  
+                  <option value = "4" >4</option>  
+                  <option value = "5" >5</option>  
+                </select>  
+            </td>  
+            <td width = 20%>    
+               <input type = "button" value = ">"   onclick = "cut(document.getElementById('left'),document.getElementById('right'));" /> </br>  
+               <input type = "button" value = ">>"  onclick = "cutAll(document.getElementById('left'),document.getElementById('right'));"/></br>  
+               <input type = "button" value = "<"   onclick = "cut(document.getElementById('right'),document.getElementById('left'));"/></br>  
+               <input type = "button" value = "<<"  onclick = "cutAll(document.getElementById('right'),document.getElementById('left'));"/> </br>  
+            </td>  
+            <td width = 40%>  
+                <select id = "right" style="width: 300px; height = 400px" multiple="multiple">  
+                    
+                </select>  
+            </td>  
+        <tr>  
+    </table>  
+</center>  
+</body>  
+</html>  
